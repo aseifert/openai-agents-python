@@ -31,19 +31,33 @@ class SalesLeadResearcher:
             results: list[LeadInfo] = []
             num_done = 0
             for task in asyncio.as_completed(tasks):
-                result = await task
-                results.append(result)
+                leads = await task
+                results.extend(leads)
                 num_done += 1
-                self.printer.update_item("progress", f"Processed {num_done}/{len(tasks)} leads")
+                self.printer.update_item(
+                    "progress",
+                    f"Processed {num_done}/{len(tasks)} companies",
+                )
             self.printer.mark_item_done("progress")
             self.printer.end()
         return results
 
-    async def _process(self, company: str, person: str | None) -> LeadInfo:
-        if not person:
+    async def _process(self, company: str, person: str | None) -> list[LeadInfo]:
+        people: list[str]
+        if person:
+            people = [person]
+        else:
             result = await Runner.run(contact_finder_agent, company)
-            info = result.final_output_as(ContactInfo)
-            person = info.full_name
-        input_data = f"Person: {person}\nCompany: {company}"
-        result = await Runner.run(info_agent, input_data)
-        return result.final_output_as(LeadInfo)
+            infos = result.final_output_as(list[ContactInfo])
+            people = [info.full_name for info in infos]
+
+        tasks = [
+            asyncio.create_task(Runner.run(info_agent, f"Person: {p}\nCompany: {company}"))
+            for p in people
+        ]
+
+        leads: list[LeadInfo] = []
+        for task in asyncio.as_completed(tasks):
+            res = await task
+            leads.append(res.final_output_as(LeadInfo))
+        return leads

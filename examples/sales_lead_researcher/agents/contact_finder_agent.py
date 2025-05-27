@@ -4,10 +4,11 @@ from agents import Agent, WebSearchTool
 from agents.model_settings import ModelSettings
 
 INSTRUCTIONS = (
-    "You find the best editorial contact at a publishing company. Given just the company's name, "
-    "search the web to identify a likely decision maker we could reach out to. "
+    "You find editorial contacts at a publishing company. Given just the company's name, "
+    "search the web to identify as many likely decision makers as you can. "
     "Prefer people responsible for content or editorial decisions. "
-    "Return their full name and title. If unsure, make your best guess based on available information."
+    "Return a list of their full names and titles, in order of relevance. "
+    "If unsure, make your best guess based on available information."
 )
 
 
@@ -21,5 +22,5 @@ contact_finder_agent = Agent(
     instructions=INSTRUCTIONS,
     tools=[WebSearchTool()],
     model_settings=ModelSettings(tool_choice="required"),
-    output_type=ContactInfo,
+    output_type=list[ContactInfo],
 )

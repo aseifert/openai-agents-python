@@ -40,7 +40,7 @@ search:
 
     - **customer_service**: 航空会社向けカスタマーサービスシステムの例
     - **research_bot**: シンプルなディープリサーチクローン
-    - **sales_lead_researcher**: 出版社向けリード情報を収集する例
+    - **sales_lead_researcher**: 出版社向けリード情報を収集する例。会社名のみを入力した場合でも候補者を自動検索します
 
 - **[voice](https://github.com/openai/openai-agents-python/tree/main/examples/voice):**  
   TTS と STT モデルを用いた音声エージェントの例をご覧ください。

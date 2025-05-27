@@ -8,4 +8,4 @@ Run it with:
 python -m examples.sales_lead_researcher.main
 ```
 
-You will be prompted to enter company and person pairs. Provide either `Company, Person` or just the company name. The agents will search the web (LinkedIn and company websites) in parallel and return structured lead information.
+You will be prompted to enter company and person pairs. Provide either `Company, Person` or just the company name. If only the company is given, the workflow will attempt to find multiple relevant contacts and gather information for each. The agents will search the web (LinkedIn and company websites) in parallel and return structured lead information.

@@ -38,8 +38,9 @@ search:
 - **[customer_service](https://github.com/openai/openai-agents-python/tree/main/examples/customer_service)** と **[research_bot](https://github.com/openai/openai-agents-python/tree/main/examples/research_bot):**  
   より実践的なユースケースを示す、拡張された 2 つの例です。
 
-    - **customer_service**: 航空会社向けカスタマーサービスシステムの例  
-    - **research_bot**: シンプルなディープリサーチクローン  
+    - **customer_service**: 航空会社向けカスタマーサービスシステムの例
+    - **research_bot**: シンプルなディープリサーチクローン
+    - **sales_lead_researcher**: 出版社向けリード情報を収集する例
 
 - **[voice](https://github.com/openai/openai-agents-python/tree/main/examples/voice):**  
   TTS と STT モデルを用いた音声エージェントの例をご覧ください。
